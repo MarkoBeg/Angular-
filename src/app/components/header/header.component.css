@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.app-section {
+  width: 800px;
+  justify-content: center;
+  border: 3px solid #4267b2;
+  height: 450px;
+}
+
+.app-section > h1 {
+  color: #000;
+  font-size: 48px;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+}
+.app-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
