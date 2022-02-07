@@ -1,0 +1,75 @@
+.container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: #fff;
+}
+form {
+  padding: 55px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 7px 3px 4px 7px rgba(0, 0, 0, 0.25);
+}
+form > h1 {
+  color: #4267b2;
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: 0.2px;
+}
+.form-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  padding: 15px;
+}
+.form-input > input::placeholder {
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+}
+.form-input > label {
+  width: 125px;
+
+  font-size: 26px;
+  cursor: pointer;
+  color: #4267b2;
+  font-weight: 500;
+}
+.form-input > input {
+  width: 200px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.input-required {
+  color: gray;
+}
+
+.input-error {
+  color: red;
+}
+.btn {
+  padding: 10px 55px;
+  margin-top: 20px;
+  border: none;
+  background-color: #4267b2;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+}
+.btn[disabled] {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+input.ng-invalid.ng-touched {
+  border: red 1px solid;
+}

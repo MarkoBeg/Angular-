@@ -1,0 +1,32 @@
+<div class="container">
+     <!-- FormControl handle specific input filed   moramo definirati 2 formControla unutar FormGrupe jer imamo 2 input fielda-->
+      <!-- Formgroup will control over complete form and will handle what are we getting inside and will check validations -->
+      <!-- ngModel bindamo iz typescript componente varijablu kako bi je tu mogli korisitit -->
+      <!-- Validators koristimo ih kod validacije dirty touched invalid .... -->
+    <form [formGroup]='loginForm' >
+      <h1>{{formTitle}}</h1>
+      <div class="form-input">
+        <label for="user">Username: </label>
+        <input type="text" id="user" placeholder="Username" required [pattern]='usernamePattern' [(ngModel)]='user' formControlName="user">
+      </div>
+      <div class="input-required">
+        <span *ngIf="User && User.invalid && User.touched">Required</span>
+      </div>
+      <div class="input-error">
+        <span *ngIf="User && User.invalid &&(User.dirty || User.touched)">Please check your input filed</span>
+      </div>
+      <div class="form-input">
+        <label for="password">Password: </label>
+        <input type="password" id="password" placeholder="Password" required [pattern]='passwordPattern' [(ngModel)]='password' formControlName='password'>
+      </div>
+      <div class="input-required">
+        <span *ngIf="Password && Password.invalid && Password.touched">Required</span>
+      </div>
+      <div class="input-error">
+        <span *ngIf="Password && Password.invalid && (Password.touched || Password.dirty)">Please check your input filed</span>
+      </div>
+      <button class="btn" type='submit'[disabled]="!user || !password" (click)="handleLogin()">Login</button>
+    </form>
+
+{{password}}
+</div>

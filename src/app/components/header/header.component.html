@@ -1,7 +1,26 @@
 <div class="container">
     <div class="app-section">
         <h1>{{title}}</h1>
-        <!-- <app-button color="red" text="Delete" (deleteItem)="delete()"></app-button>    ADD BUTTON CHANGE IT -->
-            <app-items></app-items>
+        <div class="input-section">
+        <form>
+            <div class="top-section">
+                <div class="input-label">
+                    <label for="name">Add Stuff</label>
+                    <input type="text" id="name" name="inputStuff" [(ngModel)]="inputStuff">
+                </div>
+                <div class="input-label">
+                    <label for="time">Add Time</label>
+                    <input type="text" id="time" name="inputTime" [(ngModel)]="inputTime">
+                </div>
+                <button type="submit" class="btn-add"(click)="addStuff()" [disabled]="!inputStuff || !inputTime">Add</button>
+            </div>
+            <div  *ngFor="let data of database; let index = index" class='item-section {{data.reminder ? "complete" : ""}}' (click)="onChecked(index)">
+                <h3>{{data.title}}</h3>
+                <p>{{data.day}}</p>
+                <button class='btn-delete'(click)="onDelete(data.id)">Delete</button>
+                <!-- <input type="text" name="updateStuff" [(ngModel)]="updateStuff">
+                <button (click)="onUpdate(data.id)">Update</button> -->
+            </div>
+        </form>
     </div>
 </div>
