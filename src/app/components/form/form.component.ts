@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-form',
@@ -16,29 +18,41 @@ export class FormComponent implements OnInit {
   user: any = '';
   password: any = '';
 
+   
+
   //localStorage dobivamo javascript objekt
-  data: {} = JSON.parse(localStorage.getItem('user') || '{}');
+  dataStorage: {} = JSON.parse(localStorage.getItem('guest || admin') || '{}');
 
   loginForm = new FormGroup({
     user: new FormControl(this.user, Validators.required),
     password: new FormControl(this.password, Validators.required),
   });
 
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
   handleLogin() {
     console.log(this.loginForm.value);
     try {
-      localStorage.setItem('user', JSON.stringify(this.user));
+      if (this.loginForm.valid) {
+        alert('Login in successful');
+        console.log(this.loginForm.value);
+        localStorage.setItem('user', JSON.stringify(this.user));
+        this.router.navigate(['/home']);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    try {
       if (this.user === 'admin') {
         console.log('Admin is ON');
       } else {
         console.log('Guest is ON');
+        this.router.navigate(['/user']);
       }
     } catch (err) {
-      console.error('Something went wrong', err);
+      console.log(err);
     }
   }
 

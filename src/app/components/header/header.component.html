@@ -17,9 +17,9 @@
             <div  *ngFor="let data of database; let index = index" class='item-section {{data.reminder ? "complete" : ""}}' (click)="onChecked(index)">
                 <h3>{{data.title}}</h3>
                 <p>{{data.day}}</p>
-                <button class='btn-delete'(click)="onDelete(data.id)">Delete</button>
-                <!-- <input type="text" name="updateStuff" [(ngModel)]="updateStuff">
-                <button (click)="onUpdate(data.id)">Update</button> -->
+                <button class='btn-delete'(click)="onDelete(data.id)" >Delete</button>
+                <input class="input-update" type="text" name="updateStuff" [(ngModel)]="updateStuff">
+                <button (click)="onUpdate(index)" >Update</button>
             </div>
         </form>
     </div>

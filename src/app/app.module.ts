@@ -7,9 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FormComponent } from './components/form/form.component';
 //importing forms
 import { ReactiveFormsModule } from '@angular/forms';
+import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FormComponent],
+  declarations: [AppComponent, HeaderComponent, FormComponent, ViewComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

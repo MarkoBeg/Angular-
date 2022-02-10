@@ -16,6 +16,10 @@ export class HeaderComponent implements OnInit {
 
   database: Item[] = ITEMS;
 
+  dataStorage: {} = JSON.parse(localStorage.getItem('guest || admin') || '{}');
+
+  role: any = this.dataStorage;
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -32,15 +36,16 @@ export class HeaderComponent implements OnInit {
   onDelete(data: any) {
     this.database = this.database.filter((value) => value.id !== data);
   }
-  // onUpdate(data: any) {
-  //   this.database = this.database.map((value, index) => {
-  //     if (index === data) {
-  //       this.database.title = this.updateStuff;
-  //     }
-  //     return value;
-  //   });
-  // }
-  
+  onUpdate(data: any) {
+    this.database = this.database.map((value, index) => {
+      if (index === data) {
+        value.title = this.updateStuff;
+      }
+      return value;
+    });
+    this.updateStuff = '';
+  }
+
   addStuff() {
     this.database.push({
       id: Math.floor(Math.random() * 99),
@@ -51,5 +56,12 @@ export class HeaderComponent implements OnInit {
 
     this.inputStuff = '';
     this.inputTime = '';
+  }
+  getRole(role: any) {
+    if (role.value === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './components/form/form.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ViewComponent } from './components/view/view.component';
 
 const routes: Routes = [
   { path: 'home', component: HeaderComponent },
-  { path: 'form', component: FormComponent },
+  { path: 'login', component: FormComponent },
+  { path: 'user', component: ViewComponent },
 ];
 
 @NgModule({
