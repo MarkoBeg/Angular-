@@ -5,9 +5,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { ViewComponent } from './components/view/view.component';
 
 const routes: Routes = [
-  { path: 'home', component: HeaderComponent },
+  { path: 'admin', component: HeaderComponent },
   { path: 'login', component: FormComponent },
-  { path: 'user', component: ViewComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'guest', component: ViewComponent },
 ];
 
 @NgModule({

@@ -1,26 +1,31 @@
+<app-nav-bar></app-nav-bar>
 <div class="container">
     <div class="app-section">
         <h1>{{title}}</h1>
         <div class="input-section">
         <form>
             <div class="top-section">
-                <div class="input-label">
+                <div class="input-label" *ngIf="getRole('admin')">
                     <label for="name">Add Stuff</label>
                     <input type="text" id="name" name="inputStuff" [(ngModel)]="inputStuff">
                 </div>
-                <div class="input-label">
+                <div class="input-label" *ngIf="getRole('admin')">
                     <label for="time">Add Time</label>
-                    <input type="text" id="time" name="inputTime" [(ngModel)]="inputTime">
+                    <input type="text" id="time" name="inputTime" [(ngModel)]="inputTime" >
                 </div>
-                <button type="submit" class="btn-add"(click)="addStuff()" [disabled]="!inputStuff || !inputTime">Add</button>
+                <button type="submit" class="btn-add"(click)="addStuff()" [disabled]="!inputStuff || !inputTime " *ngIf="getRole('admin')" >Add</button>
             </div>
-            <div  *ngFor="let data of database; let index = index" class='item-section {{data.reminder ? "complete" : ""}}' (click)="onChecked(index)">
+            <div  *ngFor="let data of database; let index = index" class='item-section {{data.reminder ? "complete" : ""}}' (click)="onChecked(index)" >
                 <h3>{{data.title}}</h3>
                 <p>{{data.day}}</p>
-                <button class='btn-delete'(click)="onDelete(data.id)" >Delete</button>
-                <input class="input-update" type="text" name="updateStuff" [(ngModel)]="updateStuff">
-                <button (click)="onUpdate(index)" >Update</button>
+                <button class='btn-delete'(click)="onDelete(data.id)" *ngIf="getRole('admin')">Delete</button>
+                <input class="input-update" type="text" name="updateStuff" [(ngModel)]="updateStuff" *ngIf="getRole('admin')">
+                <button class="btn-update" (click)="onUpdate(index)" *ngIf="getRole('admin')" [disabled]="!updateStuff">Update</button>
             </div>
         </form>
     </div>
 </div>
+<div class="bottom">
+<app-footer></app-footer>
+</div>
+

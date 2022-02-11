@@ -1,5 +1,10 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
 
@@ -18,19 +23,23 @@ export class FormComponent implements OnInit {
   user: any = '';
   password: any = '';
 
-   
+  @Input() loginForm!: FormGroup;
 
-  //localStorage dobivamo javascript objekt
   dataStorage: {} = JSON.parse(localStorage.getItem('guest || admin') || '{}');
 
-  loginForm = new FormGroup({
-    user: new FormControl(this.user, Validators.required),
-    password: new FormControl(this.password, Validators.required),
-  });
+  constructor(private fb: FormBuilder, private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      // ili moze ici tipa
+      // email: ["", {
+      //   validators : [Validators.required, Validators.email, ...],
+      //   ...
+      // }]
+      user: new FormControl(this.user, Validators.required),
+      password: new FormControl(this.password, Validators.required),
+    });
+  }
 
   handleLogin() {
     console.log(this.loginForm.value);
@@ -38,8 +47,7 @@ export class FormComponent implements OnInit {
       if (this.loginForm.valid) {
         alert('Login in successful');
         console.log(this.loginForm.value);
-        localStorage.setItem('user', JSON.stringify(this.user));
-        this.router.navigate(['/home']);
+        localStorage.setItem('guest || admin', JSON.stringify(this.user));
       }
     } catch (err) {
       console.log(err);
@@ -47,9 +55,12 @@ export class FormComponent implements OnInit {
     try {
       if (this.user === 'admin') {
         console.log('Admin is ON');
+        alert('Logged in as Admin');
+        this.router.navigate(['/admin']);
       } else {
         console.log('Guest is ON');
-        this.router.navigate(['/user']);
+        alert('Logged in as Guest');
+        this.router.navigate(['/admin']);
       }
     } catch (err) {
       console.log(err);

@@ -8,7 +8,7 @@ import { Item } from '../../item-interface';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  title: string = 'Crud app';
+  title: string = 'Small app';
 
   inputStuff: string = '';
   inputTime: string = '';
@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
 
   database: Item[] = ITEMS;
 
-  dataStorage: {} = JSON.parse(localStorage.getItem('guest || admin') || '{}');
-
-  role: any = this.dataStorage;
+  dataStorage: any[] = JSON.parse(
+    localStorage.getItem('guest || admin') || '{}'
+  );
 
   constructor() {}
 
@@ -57,11 +57,18 @@ export class HeaderComponent implements OnInit {
     this.inputStuff = '';
     this.inputTime = '';
   }
-  getRole(role: any) {
-    if (role.value === 'admin') {
-      return true;
-    } else {
-      return false;
+  getRole(role: any): any {
+    try {
+      if (this.dataStorage === role) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      console.log(err);
     }
+  }
+  getLocal() {
+    console.log(this.dataStorage);
   }
 }

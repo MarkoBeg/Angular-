@@ -5,7 +5,7 @@
   justify-content: center;
 }
 .app-section {
-  width: 800px;
+  width: 1200px;
   justify-content: center;
   border: 3px solid #4267b2;
   height: 450px;
@@ -36,7 +36,7 @@
   justify-content: center;
 }
 .input-label > input {
-  width: 255px;
+  width: 275px;
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -54,7 +54,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 450px;
+  width: 550px;
+  height: 50px;
   padding: 0 25px;
   margin: 10px 0;
   cursor: pointer;
@@ -75,6 +76,7 @@
 .btn-delete {
   background-color: rgb(255, 62, 62);
   border: none;
+  padding: 3px;
   border-radius: 6px;
   outline: none;
   color: #fff;
@@ -112,4 +114,23 @@
   border-radius: 8px;
   border: 1px solid lightgray;
   outline: none;
+}
+.bottom {
+  position: absolute;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+.btn-update {
+  background-color: #4267b2;
+  border: none;
+  padding: 3px;
+  border-radius: 6px;
+  outline: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: 2px 4px 2px 3px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
